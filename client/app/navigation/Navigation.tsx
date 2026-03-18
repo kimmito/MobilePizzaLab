@@ -6,7 +6,6 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import { FC } from 'react'
-import { set } from 'react-hook-form'
 
 import BottomMenu from '@/components/ui/layout/bottom-menu/bottomMenu'
 
@@ -47,7 +46,6 @@ const Navigation: FC = () => {
 				<BottomMenu currentRoute={currentRoute} nav={navRef.navigate} />
 			)}
 		</>
-		// Bottom menu
 	)
 }
 

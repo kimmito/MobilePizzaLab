@@ -20,12 +20,12 @@ const Categories: FC = () => {
 	) : (
 		<View className='flex-col flex mb-4 mt-5'>
 			<Heading>Категории</Heading>
-			<View className='flex-row justify-center mt-5'>
+			<View className='flex-row flex-wrap gap-2 justify-center mt-5'>
 				{categories?.map(category => (
 					<Pressable
 						onPress={() => navigate('Category', { slug: category.slug })}
 						key={category.id}
-						className='rounded-xl bg-gray-100 p-4 mx-2'
+						className='rounded-xl bg-gray-100 w-20'
 					>
 						<Image
 							source={getMediaSource(category.image)}

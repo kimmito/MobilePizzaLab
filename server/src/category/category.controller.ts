@@ -17,7 +17,7 @@ import {
 } from '@nestjs/common/decorators/http/request-mapping.decorator'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 
-@Controller('category')
+@Controller('categories')
 export class CategoryController {
 	constructor(private readonly categoryService: CategoryService) {}
 

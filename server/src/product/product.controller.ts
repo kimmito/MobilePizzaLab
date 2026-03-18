@@ -18,7 +18,7 @@ import { ProductService } from './product.service'
 import { ProductDto } from './dto/product.dto'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 
-@Controller('product')
+@Controller('products')
 export class ProductController {
 	constructor(private readonly productService: ProductService) {}
 
