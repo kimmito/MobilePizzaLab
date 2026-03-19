@@ -7,5 +7,5 @@ export const useProfile = () => {
 		queryKey: ['get profile'],
 		queryFn: () => UserService.getProfile()
 	})
-	return profile
+	return { profile }
 }

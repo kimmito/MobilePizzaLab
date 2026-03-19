@@ -1,12 +1,17 @@
 import React, { FC } from 'react'
-import { Text, View } from 'react-native'
+
+import Catalog from '@/components/ui/catalog/Catalog'
+import Layout from '@/components/ui/layout/layout'
+
+import { useProfile } from '../profile/useProfile'
 
 const Favorites: FC = () => {
-  return (
-    <View>
-      <Text>Favorites Screen</Text>
-    </View>
-  )
+	const { profile } = useProfile()
+	return (
+		<Layout>
+			<Catalog title='Избранное' products={profile?.favorites || []} />
+		</Layout>
+	)
 }
 
 export default Favorites

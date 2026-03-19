@@ -5,6 +5,7 @@ import useTypedNavigation from '@/hooks/useTypedNavigation'
 
 import ProductButton from './ProductButton'
 import { IProductComponent } from './product-page.interface'
+import FavoriteButton from './FavoriteButton'
 
 const ProductHeader: FC<IProductComponent> = ({ product }) => {
 	const { goBack } = useTypedNavigation()
@@ -18,7 +19,7 @@ const ProductHeader: FC<IProductComponent> = ({ product }) => {
 					iconSize={26}
 					color='#555'
 				/>
-				<Text>Добавить в избранное</Text>
+				<FavoriteButton productId={product.id} />
 			</View>
 		</View>
 	)

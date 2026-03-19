@@ -11,7 +11,7 @@ export const UserService = {
 			method: 'GET'
 		})
 	},
-	async toggleFavorite(productId: string) {
+	async toggleFavorite(productId: number) {
 		return request<IUser>({
 			url: getUsersUrl(`/profile/favorites/${productId}`),
 			method: 'PATCH'
