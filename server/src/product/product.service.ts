@@ -48,9 +48,11 @@ export class ProductService {
 			where: { category: { slug: categorySlug } },
 			select: returnProductObject
 		})
-		if (!products || products.length === 0) {
+
+		if (!products) {
 			throw new Error('products not found')
 		}
+
 		return products
 	}
 
