@@ -97,3 +97,7 @@ package-lock.json
 .env
 *.env
 *.env.*
+/client/.env
+/server/.env
+
+api-test.http

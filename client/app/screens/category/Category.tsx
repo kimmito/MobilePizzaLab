@@ -1,12 +1,27 @@
-import React, { FC } from "react";
-import { Text, View } from "react-native";
+import React, { FC } from 'react'
+import { Text } from 'react-native'
+
+import Loader from '@/components/ui/Loader'
+import Catalog from '@/components/ui/catalog/Catalog'
+import Layout from '@/components/ui/layout/layout'
+
+import { useCategory } from './useCategory'
 
 const Category: FC = () => {
-  return (
-    <View>
-      <Text>Категория</Text>
-    </View>
-  )
+	const { category, products, isLoading } = useCategory()
+	if (isLoading) return <Loader />
+	return (
+		<Layout>
+			{category ? (
+				<Catalog
+					title={category.name}
+					products={Array.isArray(products) ? products : []}
+				/>
+			) : (
+				<Text>Категория не найдена</Text>
+			)}
+		</Layout>
+	)
 }
 
 export default Category

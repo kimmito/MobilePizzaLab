@@ -15,7 +15,7 @@ export const useCategory = () => {
 
 	const categoryId = category?.id || ''
 
-	const { isLoading: isProductsLoading, data: product } = useQuery({
+	const { isLoading: isProductsLoading, data: products } = useQuery({
 		queryKey: ['get products by category', params.slug],
 		queryFn: () => ProductsService.getByCategory(params.slug),
 		enabled: !!categoryId
@@ -23,7 +23,7 @@ export const useCategory = () => {
 
 	return {
 		category,
-		product,
+		products,
 		isLoading: isCategoryLoading || isProductsLoading
 	}
 }
