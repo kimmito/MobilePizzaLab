@@ -3,6 +3,7 @@ import { IProduct } from './product.interface'
 export interface IUser {
 	id: number
 	email: string
+	isAdmin?: true
 	password: string
 	name: string
 	avatarPath: string

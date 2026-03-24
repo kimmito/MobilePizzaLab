@@ -11,7 +11,7 @@ const Catalog: FC<ICatalog> = ({ title, products }) => {
 		<View className='mb-16'>
 			{title && <Heading>{title}</Heading>}
 			{products?.length ? (
-				<View className='flex-row flex-wrap justify-between mt-4'>
+				<View className='flex-row flex-wrap justify-around mt-4'>
 					{products.map(product => (
 						<ProductItem key={product.id} product={product} />
 					))}

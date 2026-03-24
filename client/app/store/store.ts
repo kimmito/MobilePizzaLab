@@ -1,6 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import {	FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistReducer, persistStore, PersistConfig } from 'redux-persist'
+import {
+	FLUSH,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	PersistConfig,
+	REGISTER,
+	REHYDRATE,
+	persistReducer,
+	persistStore
+} from 'redux-persist'
+
 import { cartSlice } from './cart/cart.slice'
 
 const cartReducer = cartSlice.reducer

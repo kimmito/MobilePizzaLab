@@ -35,6 +35,8 @@ model Product {
   category    Category? @relation(fields: [categoryId], references: [id])
   user        User?     @relation(fields: [userId], references: [id])
 
+  orderItems OrderItem[]
+
   @@map("product")
 }
 
@@ -50,13 +52,43 @@ model Category {
   @@map("category")
 }
 
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELED
+}
+
 model Order {
+  id          Int         @id @default(autoincrement())
+  status      OrderStatus @default(PENDING)
+  totalAmount Int         @default(0) @map("total_amount")
+  paidAt      DateTime?   @map("paid_at")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  reference   String      @unique
+  userId      Int?
+  user        User?       @relation(fields: [userId], references: [id])
+
+  items OrderItem[]
+
+  @@index([paidAt, status])
+  @@map("order")
+}
+
+model OrderItem {
   id        Int      @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int      @default(1)
+  unitPrice Int      @default(0) @map("unit_price")
+  lineTotal Int      @default(0) @map("line_total")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  reference String   @unique
-  userId    Int?
-  user      User?    @relation(fields: [userId], references: [id])
 
-  @@map("order")
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_item")
 }

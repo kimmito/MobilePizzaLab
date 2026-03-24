@@ -20,19 +20,19 @@ const Categories: FC = () => {
 	) : (
 		<View className='flex-col flex mb-4 mt-5'>
 			<Heading>Категории</Heading>
-			<View className='flex-row flex-wrap gap-2 justify-center mt-5'>
+			<View className='flex-row flex-nowrap gap-1 justify-center mt-5 overflow-x-visible'>
 				{categories?.map(category => (
 					<Pressable
 						onPress={() => navigate('Category', { slug: category.slug })}
 						key={category.id}
-						className='rounded-xl bg-gray-100 w-20'
+						className='rounded-xl bg-gray-100 min-w-20 h-20 px-4 py-2'
 					>
 						<Image
 							source={getMediaSource(category.image)}
-							className='w-14 h-14 p-3 mx-auto'
+							className='w-12 h-12 p-2 mx-auto'
 							style={{ resizeMode: 'contain' }}
 						/>
-						<Text className='text-center text-xs font-normal'>
+						<Text className='text-center text-sm text-nowrap font-normal'>
 							{category.name}
 						</Text>
 					</Pressable>

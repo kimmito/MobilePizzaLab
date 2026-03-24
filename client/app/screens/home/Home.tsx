@@ -8,7 +8,7 @@ import Products from './products/Products'
 
 export const Home: FC = () => {
 	return (
-		<Layout className='px-2'>
+		<Layout className='px-3'>
 			<Header />
 			<Banner />
 			<Categories />

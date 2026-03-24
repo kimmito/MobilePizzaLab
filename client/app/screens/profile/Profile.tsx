@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { AuthService } from '@/services/auth/auth.service'
 
 import { useProfile } from './useProfile'
+import AdminInfo from './AdminInfo'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
@@ -24,7 +25,7 @@ const Profile: FC = () => {
 				/>
 				<Text className='mt-4'>{profile?.name}</Text>
 			</View>
-
+			<AdminInfo isAdmin={profile?.isAdmin} />
 			<Button
 				onPress={() => AuthService.logout().then(() => setUser(null))}
 				className='mt-6 bg-red-500 w-full'

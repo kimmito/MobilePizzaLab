@@ -1,1 +1,12 @@
-//
+import React from 'react'
+import { Text, View } from 'react-native'
+
+const Cart: React.FC = () => {
+	return (
+		<View>
+			<Text>Корзина</Text>
+		</View>
+	)
+}
+
+export default Cart

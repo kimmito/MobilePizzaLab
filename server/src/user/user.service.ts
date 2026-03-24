@@ -1,11 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { Prisma } from '@prisma/client'
 import { returnUserObject } from './return-user-object'
 import { PrismaService } from 'src/prisma.service'
 
 @Injectable()
 export class UserService {
-	constructor(private readonly prismaService: PrismaService) {}
+	constructor(
+		private readonly prismaService: PrismaService,
+		private readonly configService: ConfigService
+	) {}
+
+	private isAdminEmail(email: string) {
+		const adminEmails = (this.configService.get<string>('ADMIN_EMAILS') || '')
+			.split(',')
+			.map(item => item.trim().toLowerCase())
+			.filter(Boolean)
+
+		return adminEmails.includes(email.toLowerCase())
+	}
 
 	async getById(id: number, selectObject: Prisma.UserSelect = {}) {
 		const user = await this.prismaService.user.findUnique({
@@ -30,6 +43,14 @@ export class UserService {
 			}
 		})
 		if (!user) throw new NotFoundException('User not found')
+
+		if (this.isAdminEmail(user.email)) {
+			return {
+				...user,
+				isAdmin: true
+			}
+		}
+
 		return user
 	}
 

@@ -6,7 +6,7 @@ import { Pressable, View, Text } from "react-native";
 
 const Header: FC = () => {
   const { navigate } = useTypedNavigation()
-  const profile = useProfile()
+  const {profile} = useProfile()
 
   return(
     <View className='flex-row justify-between items-center'>
