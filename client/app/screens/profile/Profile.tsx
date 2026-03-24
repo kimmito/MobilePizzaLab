@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
-import { Image, View, Text } from 'react-native'
-import Button from '@/components/ui/button/Button'
+import { Image, Text, View } from 'react-native'
+
 import Heading from '@/components/Heading'
+import Button from '@/components/ui/button/Button'
 import Layout from '@/components/ui/layout/layout'
 
 import { useAuth } from '@/hooks/useAuth'
@@ -12,7 +13,7 @@ import { useProfile } from './useProfile'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
-	const profile = useProfile()
+	const { profile } = useProfile()
 	return (
 		<Layout className='px-4'>
 			<Heading isCenter={true}>Профиль</Heading>
@@ -21,7 +22,7 @@ const Profile: FC = () => {
 					source={{ uri: profile?.avatarPath }}
 					className='w-40 h-40 rounded-full'
 				/>
-        <Text className='mt-4'>{profile?.name}</Text>
+				<Text className='mt-4'>{profile?.name}</Text>
 			</View>
 
 			<Button

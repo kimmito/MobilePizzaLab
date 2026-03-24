@@ -1,18 +1,23 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Navigation from 'app/navigation/Navigation'
 import { registerRootComponent } from 'expo'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import Toast from 'react-native-toast-message'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+
+import AuthProvider from '@/providers/auth/AuthProvider'
+
+import { persistor, store } from '@/store/store'
 
 import './global.css'
-import AuthProvider from '@/providers/auth/AuthProvider'
-import Toast from 'react-native-toast-message'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			refetchOnWindowFocus: false,
+			refetchOnWindowFocus: false
 		}
 	}
 })
@@ -20,13 +25,17 @@ const queryClient = new QueryClient({
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<AuthProvider>
-				<SafeAreaProvider>
-					<Navigation />
-				</SafeAreaProvider>
-				<StatusBar style='light' />
-				<Toast />
-			</AuthProvider>
+			<Provider store={store}>
+				<PersistGate persistor={persistor} loading={null}>
+					<AuthProvider>
+						<SafeAreaProvider>
+							<Navigation />
+						</SafeAreaProvider>
+						<StatusBar style='light' />
+						<Toast />
+					</AuthProvider>
+				</PersistGate>
+			</Provider>
 		</QueryClientProvider>
 	)
 }

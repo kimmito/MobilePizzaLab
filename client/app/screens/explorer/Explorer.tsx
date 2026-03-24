@@ -14,7 +14,7 @@ const Explorer: FC = () => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<Catalog title='Explorer' products={products || []} />
+				<Catalog title='Каталог' products={products || []} />
 			)}
 		</Layout>
 	)
