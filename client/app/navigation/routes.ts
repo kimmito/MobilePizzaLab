@@ -8,6 +8,7 @@ import Favorites from '@/screens/favorites/Favorites'
 import Product from '@/screens/product/Product'
 import Profile from '@/screens/profile/Profile'
 import Search from '@/screens/search/Search'
+import Thanks from '@/screens/thanks/Thanks'
 
 export const routes: IRoute[] = [
 	{
@@ -38,5 +39,6 @@ export const routes: IRoute[] = [
 		name: 'Category',
 		component: Category
 	},
-	{ name: 'Product', component: Product }
+	{ name: 'Product', component: Product },
+	{ name: 'Thanks', component: Thanks }
 ]
