@@ -64,8 +64,8 @@ model Order {
   totalAmount Int         @default(0) @map("total_amount")
   paidAt      DateTime?   @map("paid_at")
   createdAt   DateTime    @default(now()) @map("created_at")
-  updatedAt   DateTime    @updatedAt @map("updated_at")
-  reference   String      @unique
+  updatedAt   DateTime?    @updatedAt @map("updated_at")
+  reference   String?     @unique
   userId      Int?
   user        User?       @relation(fields: [userId], references: [id])
 
