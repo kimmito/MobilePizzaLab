@@ -1,3 +1,4 @@
+import { StripeProvider } from '@stripe/stripe-react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Navigation from 'app/navigation/Navigation'
 import { registerRootComponent } from 'expo'
@@ -29,7 +30,9 @@ function App() {
 				<PersistGate persistor={persistor} loading={null}>
 					<AuthProvider>
 						<SafeAreaProvider>
-							<Navigation />
+							<StripeProvider publishableKey={process.env.STRIPE_KEY || ''}>
+								<Navigation />
+							</StripeProvider>
 						</SafeAreaProvider>
 						<StatusBar style='light' />
 						<Toast />

@@ -8,14 +8,17 @@ import Layout from '@/components/ui/layout/layout'
 import { useCart } from '@/hooks/useCard'
 
 import { convertPrice } from '@/utils/convertPrice'
+
 import CartItem from './cart-item/CartItem'
+import { useCheckout } from './useCheckout'
 
 const Cart: React.FC = () => {
 	const { items, total } = useCart()
+	const { onCheckout } = useCheckout()
 	return (
 		<>
 			<Layout>
-				<Heading>Cart</Heading>
+				<Heading>Корзина</Heading>
 
 				{items.length ? (
 					items.map(item => <CartItem key={item.id} item={item} />)
@@ -28,7 +31,7 @@ const Cart: React.FC = () => {
 					<Text className='font-bold text-xl'>
 						Всего: {convertPrice(total)}
 					</Text>
-					<Button className='mt-4' onPress={() => {}}>
+					<Button className='mt-4' onPress={() => onCheckout()}>
 						Оформить заказ
 					</Button>
 				</View>

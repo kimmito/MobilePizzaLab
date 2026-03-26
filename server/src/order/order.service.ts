@@ -57,7 +57,14 @@ export class OrderService {
 			data: {
 				reference: `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
 				items: {
-					create: dto.items
+					create: dto.items.map(item => ({
+						quantity: item.quantity,
+						unitPrice: item.price,
+						lineTotal: item.price * item.quantity,
+						product: {
+							connect: { id: item.productId }
+						}
+					}))
 				},
 				totalAmount: total,
 				user: {
