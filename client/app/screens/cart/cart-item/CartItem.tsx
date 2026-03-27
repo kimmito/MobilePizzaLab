@@ -30,6 +30,7 @@ const CartItem: React.FC<ICartItemProps> = ({ item }) => {
 				/>
 			</Pressable>
 			<View className='ml-5 mt-2'>
+				<Text className='mt-1 font-bold text-xl'>{item.product.name}</Text>
 				<Text className='mt-1'>{convertPrice(item.price)}</Text>
 				<CartActions item={item} />
 			</View>

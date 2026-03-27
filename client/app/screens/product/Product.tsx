@@ -11,6 +11,7 @@ import ProductHeader from './productHeader'
 import { useProduct } from './useProduct'
 import ProductInfo from './product-info/ProductInfo'
 import AddToCartButton from './product-info/AddToCartButton'
+import GoToCartButton from './product-info/GoToCartButton'
 
 const Product: FC = () => {
 	const { isLoading, product } = useProduct()
@@ -26,10 +27,12 @@ const Product: FC = () => {
 					source={getMediaSource(product.image)}
 					width={260}
 					height={260}
+					className='max-w-[260px] m-auto'
 				/>
 			</View>
       <ProductInfo product={product} />
       <AddToCartButton product={product} />
+			<GoToCartButton />
 		</Layout>
 	)
 }

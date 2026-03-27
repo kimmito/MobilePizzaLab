@@ -31,7 +31,7 @@ const Cart: React.FC = () => {
 					<Text className='font-bold text-xl'>
 						Всего: {convertPrice(total)}
 					</Text>
-					<Button className='mt-4' onPress={() => onCheckout()}>
+					<Button className='mt-4 px-4 w-full' onPress={() => onCheckout()}>
 						Оформить заказ
 					</Button>
 				</View>

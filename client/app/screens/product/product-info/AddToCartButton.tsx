@@ -19,7 +19,7 @@ const AddToCartButton: FC<IAddToCartButton> = ({ product }) => {
 	)
 
 	return (
-		<Button
+			<Button
 			onPress={() =>
 				currentElement
 					? removeFromCart({ id: currentElement.id })
@@ -29,7 +29,7 @@ const AddToCartButton: FC<IAddToCartButton> = ({ product }) => {
 							price: product.price
 						})
 			}
-			className='mt-6'
+			className='mt-6 px-4'
 		>
 			{currentElement ? 'Удалить из корзины' : 'Добавить в корзину'}
 		</Button>
