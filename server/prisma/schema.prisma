@@ -17,7 +17,7 @@ model User {
   phone      String    @default("") @map("phone")
   orders     Order[]
   favorites  Product[]
-
+  isAdmin Boolean @default(false) @map("is_admin")
   @@map("user")
 }
 

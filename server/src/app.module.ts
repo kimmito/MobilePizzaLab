@@ -9,6 +9,7 @@ import { ProductModule } from './product/product.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { path } from 'app-root-path'
 import { OrderModule } from './order/order.module';
+import { AnalyticsModule } from './analytics/analytics.module';
 
 @Module({
 	imports: [
@@ -21,7 +22,8 @@ import { OrderModule } from './order/order.module';
 		CategoryModule,
 		UserModule,
 		ProductModule,
-		OrderModule
+		OrderModule,
+		AnalyticsModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

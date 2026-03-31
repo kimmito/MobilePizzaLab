@@ -10,7 +10,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { AuthService } from '@/services/auth/auth.service'
 
 import { useProfile } from './useProfile'
-import AdminInfo from './AdminInfo'
+import AdminInfo from './admin-info/AdminInfo'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
