@@ -6,3 +6,6 @@ export const getUsersUrl = (string: string) => `/users${string}`
 export const getProductsUrl = (string: string) => `/products${string}`
 export const getCategoriesUrl = (string: string) => `/categories${string}`
 export const getOrdersUrl = (string: string) => `/orders${string}`
+export const getAnalyticsUrl = (string: string) =>
+	`/analytics/admin/analytics${string}`
+ 
