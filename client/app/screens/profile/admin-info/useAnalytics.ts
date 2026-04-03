@@ -14,7 +14,7 @@ type UseAnalyticsOptions = {
 export const useAnalytics = (options: UseAnalyticsOptions = {}) => {
 	const {
 		enabled = true,
-		initialRangeDays = 30,
+		initialRangeDays = 7,
 		initialMetric = 'quantity',
 		initialTop = 5
 	} = options

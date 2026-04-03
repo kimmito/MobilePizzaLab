@@ -16,7 +16,7 @@ const Profile: FC = () => {
 	const { setUser } = useAuth()
 	const { profile } = useProfile()
 	return (
-		<Layout className='px-4'>
+		<Layout className='px-4 mt-4'>
 			<Heading isCenter={true}>Профиль</Heading>
 			<View className='my-6 items-center justify-center'>
 				<Image
