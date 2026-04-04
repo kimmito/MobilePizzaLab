@@ -14,7 +14,7 @@ const Search: FC = () => {
 	const { searchTerm, isLoading, control, products } = useSearch()
 	return (
 		<Layout>
-			<Heading>Search</Heading>
+			<Heading>Поиск</Heading>
 			<View className='mt-3'>
 				<Field<ISearchFormData>
 					control={control}

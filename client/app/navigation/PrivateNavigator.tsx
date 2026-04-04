@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 
 import { useAuth } from '@/hooks/useAuth'
 
+import { theme } from '@/config/theme'
+
 import { TypeRootStackParamList } from './navigation.types'
 import { routes } from './routes'
 import AuthScreen from '@/screens/auth/Auth'
@@ -16,7 +18,7 @@ const PrivateNavigator: FC = () => {
 		<Stack.Navigator
 			screenOptions={{
 				headerShown: false,
-				contentStyle: { backgroundColor: '#fff' }
+				contentStyle: { backgroundColor: theme.colors.pageBackground }
 			}}
 		>
 			{user ? (

@@ -1,12 +1,18 @@
-import useTypedNavigation from '@/hooks/useTypedNavigation'
 import React from 'react'
 import { FC } from 'react'
-import { Pressable, View, Image, Text } from 'react-native'
+import { Image, Pressable, Text, View } from 'react-native'
+
+import useTypedNavigation from '@/hooks/useTypedNavigation'
+
+import { theme } from '@/config/theme'
 
 const Banner: FC = () => {
 	const { navigate } = useTypedNavigation()
 	return (
-		<View className='mt-5 w-full bg-[#47AA52] px-5 py-5 rounded-2xl justify-between flex-row'>
+		<View
+			className='mt-5 w-full px-5 py-5 rounded-2xl justify-between flex-row'
+			style={{ backgroundColor: theme.colors.accentStrong }}
+		>
 			<View>
 				<Text className='text-white font-medium text-xl w-52'>
 					Скидка 15% на все пиццы!
@@ -14,7 +20,8 @@ const Banner: FC = () => {
 
 				<Pressable
 					onPress={() => navigate('Explorer')}
-					className='bg-stone-800 py-4 text-3xl rounded-full w-44 mt-4'
+					className='py-4 text-3xl rounded-full w-44 mt-4'
+					style={{ backgroundColor: theme.colors.textPrimary }}
 				>
 					<Text className='text-white text-center font-medium'>
 						Заказать сейчас

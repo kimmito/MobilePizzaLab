@@ -11,6 +11,8 @@ import useTypedNavigation from '@/hooks/useTypedNavigation'
 
 import { IAuthFormData } from '@/types/auth.interface'
 
+import { theme } from '@/config/theme'
+
 import AuthFields from './AuthFields'
 import { useAuthMutation } from './useAuthMutation'
 
@@ -23,16 +25,22 @@ export const Auth: FC = () => {
 	const { loginSync, registerSync, isLoading } = useAuthMutation(reset)
 
 	const onSubmit: SubmitHandler<IAuthFormData> = data => {
-		if(isReg) registerSync(data)
-			else loginSync(data)
+		if (isReg) registerSync(data)
+		else loginSync(data)
 	}
 
 	const [isReg, setIsReg] = useState(false)
 
 	return (
-		<View className='mx-2 items-center justify-center h-full'>
+		<View
+			className='mx-2 items-center justify-center h-full'
+			style={{ backgroundColor: theme.colors.pageBackground }}
+		>
 			<View className='w-9/12'>
-				<Text className='text-center text-black text-3xl font-medium mb-8'>
+				<Text
+					className='text-center text-3xl font-medium mb-8'
+					style={{ color: theme.colors.textPrimary }}
+				>
 					{isReg ? 'Регистрация' : 'Авторизация'}
 				</Text>
 				{isLoading ? (
@@ -46,9 +54,12 @@ export const Auth: FC = () => {
 						</Button>
 
 						<Pressable onPress={() => setIsReg(!isReg)}>
-							<Text className='text-black text-center text-base mt-6'>
+							<Text
+								className='text-center text-base mt-6'
+								style={{ color: theme.colors.textPrimary }}
+							>
 								{isReg ? 'Уже есть аккаунт? ' : 'Нет аккаунта? '}
-								<Text className='text-[#47AA52]'>
+								<Text style={{ color: theme.colors.accent }}>
 									{isReg ? 'Войти' : 'Зарегистрироваться'}
 								</Text>
 							</Text>
