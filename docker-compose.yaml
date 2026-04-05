@@ -1,0 +1,36 @@
+services:
+    db:
+        image: postgres:16
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: ${DB_USER:-postgres}
+            POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+            POSTGRES_DB: ${DB_NAME:-pizzaLab}
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-pizzaLab}
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        ports:
+            - '5432:5432'
+        volumes:
+            - db_data:/var/lib/postgresql/data
+
+    server:
+        build:
+            context: ./server
+        restart: unless-stopped
+        depends_on:
+            db:
+                condition: service_healthy
+        env_file:
+            - ./server/.env
+        environment:
+            DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-pizzaLab}?schema=public
+        ports:
+            - '3000:3000'
+
+volumes:
+    db_data:
