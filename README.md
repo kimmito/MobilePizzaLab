@@ -1,4 +1,4 @@
-# PhonePizzaLab
+# MobilePizzaLab
 
 Учебный fullstack-проект в формате мобильного приложения (Expo + React Native) и API-сервера (NestJS + Prisma + PostgreSQL).
 
@@ -35,72 +35,96 @@
 - class-validator / class-transformer
 - Stripe SDK
 
-## Структура проекта
+## Структура
 
-- `client` — мобильное приложение (Expo)
-- `server` — API и бизнес-логика (NestJS + Prisma)
+- `client` - мобильное приложение
+- `server` - backend API и Prisma
+- `docker-compose.yaml` - запуск db + server в Docker
 
-## Быстрый старт
+## Предварительные требования
 
-### 1) Клонирование и установка зависимостей
+- Node.js 20+
+- Docker Desktop
+- Для клиента: Expo Go или эмулятор
+
+## Переменные окружения
+
+Используются три env-файла.
+
+### 1) Корневой `.env` (для Docker Compose)
+
+```env
+DB_NAME=database-name
+DB_USER=database-user
+DB_PASSWORD=database-password
+```
+
+### 2) `server/.env` (для Nest приложения внутри контейнера)
+
+```env
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=sk_test_xxx
+
+<!-- Опционально -->
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DB_NAME
+```
+
+### 3) `client/.env` (для Expo клиента)
+
+```env
+EXPO_PUBLIC_SERVER_URL=http://192.168.1.103:3000
+STRIPE_KEY=pk_test_xxx
+```
+
+Для физического устройства в `EXPO_PUBLIC_SERVER_URL` указывается IP компьютера в локальной сети.
+
+## Установка зависимостей
 
 ```bash
-# корень
-npm install
-
-# клиент
 cd client
 yarn install
 
-# сервер
 cd ../server
 npm install
 ```
 
-### 2) Переменные окружения
+## Запуск через Docker (рекомендуется)
 
-#### server/.env
-
-```env
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DB_NAME
-JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=sk_test_xxx
-```
-
-#### client/.env
-
-```env
-EXPO_PUBLIC_SERVER_URL=http://localhost:3000
-STRIPE_KEY=pk_test_xxx
-```
-
-### 3) Миграции Prisma
+### 1) Поднять Postgres + Server
 
 ```bash
-cd server
-npx prisma migrate dev
-npx prisma generate
+docker compose --env-file .env up -d --build
 ```
 
-### 4) Запуск
-
-#### Сервер
+### 2) Применить Prisma миграции
 
 ```bash
-cd server
-npm run dev
+docker compose exec server npx prisma migrate deploy
+docker compose exec server npx prisma generate
 ```
 
-#### Клиент
+### 3) Проверить сервисы
+
+```bash
+docker compose ps
+docker compose logs -f server
+```
+
+### 4) Запустить клиент
 
 ```bash
 cd client
 yarn start
 ```
 
-После запуска Expo можно открыть проект на Android/iOS эмуляторе или на физическом устройстве через Expo Go.
+## Запуск без Docker (альтернатива)
 
-## Идеи для дальнейшей реализации
+```bash
+cd server
+npm run start:dev
 
-- История заказов и трекинг статусов в UI.
-- Веб-версия (Expo Web) для демонстрации по ссылке.
+cd ../client
+yarn start
+```
+
+При этом `server/.env` должен содержать рабочий `DATABASE_URL` на локальный PostgreSQL.
