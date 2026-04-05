@@ -8,9 +8,10 @@ import Layout from '@/components/ui/layout/layout'
 import { useAuth } from '@/hooks/useAuth'
 
 import { AuthService } from '@/services/auth/auth.service'
+import { OrderService } from '@/services/order.service'
 
-import { useProfile } from './useProfile'
 import AdminInfo from './admin-info/AdminInfo'
+import { useProfile } from './useProfile'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
@@ -25,6 +26,9 @@ const Profile: FC = () => {
 				/>
 				<Text className='mt-4'>{profile?.name}</Text>
 			</View>
+			<Button onPress={() => OrderService.getByUserId(profile?.id)}>
+				История заказов
+			</Button>
 			<AdminInfo isAdmin={profile?.isAdmin} />
 			<Button
 				onPress={() => AuthService.logout().then(() => setUser(null))}
