@@ -9,6 +9,7 @@ import Product from '@/screens/product/Product'
 import Profile from '@/screens/profile/Profile'
 import Search from '@/screens/search/Search'
 import Thanks from '@/screens/thanks/Thanks'
+import History from '@/screens/profile/history/History'
 
 export const routes: IRoute[] = [
 	{
@@ -34,6 +35,10 @@ export const routes: IRoute[] = [
 	{
 		name: 'Cart',
 		component: Cart
+	},
+	{
+		name: 'History',
+		component: History
 	},
 	{
 		name: 'Category',

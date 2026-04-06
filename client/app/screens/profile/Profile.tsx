@@ -12,10 +12,12 @@ import { OrderService } from '@/services/order.service'
 
 import AdminInfo from './admin-info/AdminInfo'
 import { useProfile } from './useProfile'
+import useTypedNavigation from '@/hooks/useTypedNavigation'
 
 const Profile: FC = () => {
 	const { setUser } = useAuth()
 	const { profile } = useProfile()
+	const { navigate} = useTypedNavigation()
 	return (
 		<Layout className='px-4 mt-4'>
 			<Heading isCenter={true}>Профиль</Heading>
@@ -26,7 +28,7 @@ const Profile: FC = () => {
 				/>
 				<Text className='mt-4'>{profile?.name}</Text>
 			</View>
-			<Button onPress={() => OrderService.getByUserId(profile?.id)}>
+			<Button onPress={() => navigate('History')}>
 				История заказов
 			</Button>
 			<AdminInfo isAdmin={profile?.isAdmin} />

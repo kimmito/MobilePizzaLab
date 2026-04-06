@@ -6,10 +6,16 @@ import { useProfile } from '../useProfile'
 
 export const useGetHistory = () => {
 	const { profile } = useProfile()
-	const { data: orders } = useQuery({
+	const {
+		data: orders,
+		isLoading,
+		isError,
+		error,
+		refetch
+	} = useQuery({
 		queryKey: ['get orders by user id', profile?.id],
-		queryFn: () => OrderService.getByUserId(profile?.id)
+		queryFn: () => OrderService.getByUserId()
 	})
 
-	return { orders }
+	return { orders, isLoading, isError, error, refetch }
 }

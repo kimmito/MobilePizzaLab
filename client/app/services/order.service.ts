@@ -20,9 +20,9 @@ export const OrderService = {
 		})
 	},
 
-	async getByUserId(id: number | undefined) {
+	async getByUserId() {
 		return request<IOrder[]>({
-			url: getOrdersUrl(`/by-user/${id}`),
+			url: getOrdersUrl('/by-user'),
 			method: 'GET'
 		})
 	},
