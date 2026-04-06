@@ -15,7 +15,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 	return (
 		<Pressable
 			className={cn(
-				'self-center mt-3.5 w-fill py-3 font-light rounded-lg',
+				'self-center mt-3.5 w-fill p-3 font-light rounded-lg',
 				className
 			)}
 			style={{ backgroundColor: theme.colors.accent }}
