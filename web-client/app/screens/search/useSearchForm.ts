@@ -1,0 +1,20 @@
+import { useForm } from 'react-hook-form'
+
+import { useDebounce } from '@/hooks/useDebounce'
+
+import { ISearchFormData } from './search.interface'
+
+export const useSearchForm = () => {
+	const { control, watch } = useForm<ISearchFormData>({
+		mode: 'onChange',
+		defaultValues: {
+			searchTerm: ''
+		}
+	})
+
+	const searchTerm = watch('searchTerm')
+	const debouncedSearch = useDebounce(searchTerm.trim(), 500)
+
+	return { debouncedSearch, searchTerm, control }
+}
+
